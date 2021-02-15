@@ -1,13 +1,11 @@
 # Primera aplicación web
 
-
-
 ## Html y el css de la aplicación web
 
 Creamos dos archivos index.html y style.css:
 
 1º `index.html`
-Dentro de head ponemos el título de nuestra página, el tipo de letra que queremos y hacemos referencia al archivo `sytle.css`
+* Dentro de head ponemos el título de nuestra página, el tipo de letra que queremos y hacemos referencia al archivo `sytle.css`
 ~~~ html
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +19,8 @@ Dentro de head ponemos el título de nuestra página, el tipo de letra que quere
     <link rel="stylesheet" href="css/sytle.css">
 </head>
 ~~~
+
+* Hacemos las divisiones de los contenedores de la información y también hacemos la llamada al script
 ~~~ html
 <body>
     
@@ -55,6 +55,93 @@ Dentro de head ponemos el título de nuestra página, el tipo de letra que quere
 </body>
 </html>
 ~~~ 
+2º `sytle.css`
+Con este archivo le damos el formato deseado a la aplicación. 
+* Fuentes y sombreado del contenedor main
+ ~~~ css
+main{
+    font-family: 'Comfortaa', cursive;
+    font-family: 'Noto Sans JP', sans-serif;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 50px;
+   
+
+    border: 2px solid black;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12)
+      ;
+
+}
+~~~
+* Tamaño del H1, estilo del header y section
+~~~ css
+h1{
+    font-size: 2.5em;
+}
+header{
+    border-bottom: 2px solid black;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+section{
+    display: flex;
+}
+
+~~~
+* Formato de las clases usadas en los contenedores.
+~~~css
+.form-panel{
+    
+    width: 50%;
+    height: 50vh;
+    border-right: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.list-panel{
+    
+    width: 50%;
+    height: 50vh;
+}
+.items-form input, .items-form button{
+   width: 60%;
+   margin-left: 20%;
+    margin-top: 20px;
+    font-size: 1.2em
+
+
+}
+.items-form input{
+    border-width: 0 0 2px 0;
+}
+.item {
+    border: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: 80%;
+    margin: 10px auto;
+} 
+.delete-item {
+    background-color: #006519;
+    border: none;
+    color: #ffffff;
+    transition-duration: 0.4s;
+    outline: none;
+    cursor: pointer;
+  }
+~~~
+
 ## JavaScript de la aplicación web
 
 Creamos dos archivos .js:
