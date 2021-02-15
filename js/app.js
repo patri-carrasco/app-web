@@ -6,37 +6,41 @@ function avoidSubmit(event){
     getValue()
 }
 
-function  getValue(){
-    let taskText = document.querySelector('.items-form input').getValue
+function getValue(){
+    let taskText = document.querySelector('.items-form input').value
     insertTask(taskText)
-    document.querySelector('.items-form input').getValue = ''
+    document.querySelector('.items-form input').value = ''
 }
 
 function insertTask(taskText){
-    taskArray.push(taskText)
+    tasksArray.push(taskText)
     printTasks()
 }
 
 function printTasks(){
     let taskCard = ''
-
-    taskArray.forEach((eachTask, index) =>{
-        taskCard = taskCard + `<div class="item"> 
-        <span>${eachTask}</span>
-        <button class="delete-item" data-index="${index}">Realizado</button>
-        </div>`
-        
-
+    
+    tasksArray.forEach((eachTask, index) =>{
+       taskCard +=  `<div class="item"> 
+                        <span>${eachTask}</span>
+                        <button class="delete-item" data-index="${index}">Realizada</button>
+                    </div>`
     })
     document.querySelector('.list-panel').innerHTML = taskCard
 
     setEventListeners()
 }
-function setEventeListeners(){
+function setEventListeners(){
     document.querySelectorAll('.delete-item').forEach(eachButton => eachButton.onclick = removeTask)
+    updatePendingTasksValue(tasksArray)
 }
 function removeTask(){
     let taskID = this.dataset.index
-    taskArray.splice(taskID,1)
+    tasksArray.splice(taskID,1)
     printTasks()
+}
+
+function updatePendingTasksValue(tasksArray){
+ 
+    document.querySelector('.first-panel .pending').innerHTML = tasksArray.length
 }
