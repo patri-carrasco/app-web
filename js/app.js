@@ -1,7 +1,9 @@
 document.querySelector('.items-form').onsubmit = avoidSubmit
 
-function avoidSubmit(event){
+getTasksLocally()
 
+function avoidSubmit(event){
+    
     event.preventDefault()
     getValue()
 }
@@ -10,16 +12,22 @@ function getValue(){
     let taskText = document.querySelector('.items-form input').value
     insertTask(taskText)
     document.querySelector('.items-form input').value = ''
+
+    
+
 }
 
 function insertTask(taskText){
     tasksArray.push(taskText)
+    storeTasksLocally(tasksArray)
     printTasks()
 }
 
 function printTasks(){
+   
     let taskCard = ''
     
+   
     tasksArray.forEach((eachTask, index) =>{
        taskCard +=  `<div class="item"> 
                         <span>${eachTask}</span>
@@ -27,7 +35,7 @@ function printTasks(){
                     </div>`
     })
     document.querySelector('.list-panel').innerHTML = taskCard
-
+     
     setEventListeners()
 }
 function setEventListeners(){
@@ -43,4 +51,20 @@ function removeTask(){
 function updatePendingTasksValue(tasksArray){
  
     document.querySelector('.first-panel .pending').innerHTML = tasksArray.length
+}
+
+
+function storeTasksLocally(tasksArray){
+    localStorage.setItem('Local',tasksArray)
+}
+
+function getTasksLocally(){
+    MyLocalStorage = localStorage.getItem('Local')
+      
+    // If no existing data, create an array
+    // Otherwise, convert the localStorage string to an array
+    tasksArray = MyLocalStorage ? MyLocalStorage.split(',') : [];
+      
+    printTasks()
+     
 }

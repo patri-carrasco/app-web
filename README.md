@@ -4,9 +4,57 @@
 
 ## Html y el css de la aplicación web
 
+Creamos dos archivos index.html y style.css:
+
+1º `index.html`
+Dentro de head ponemos el título de nuestra página, el tipo de letra que queremos y hacemos referencia al archivo `sytle.css`
+~~~ html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do's list | mis cosas pendientes</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">   
+    <link rel="stylesheet" href="css/sytle.css">
+</head>
+~~~
+~~~ html
+<body>
+    
+    <main>
+        <header>
+            <h1>TO-Do's</h1>
+            <div class = 'first-panel'>
+                <p>Listado de tareas pendientes (<span class="pending">0</span> tareas en total)</p>
+            </div>
+            
+
+        </header>        
+        <section>
+            <div class = 'form-panel'>
+               <form class = "items-form">
+                   <input type="text" placeholder="Escribe tu tarea">
+                   <button>Añadir tarea</button>
+               </form>
+
+            </div>
+
+            <div class = 'list-panel'>
+                
+            </div>
+        </section>
+
+    </main>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
 
 
-
+</body>
+</html>
+~~~ 
 ## JavaScript de la aplicación web
 
 Creamos dos archivos .js:
@@ -87,3 +135,27 @@ function updatePendingTasksValue(tasksArray){
 }
 ~~~
 
+## Segundo reto: almacenamiento local (Local Storage)
+
+Con la función  `storeTasksLocally()` guardamos nuestro array en LocalStorage,
+
+~~~ js
+function storeTasksLocally(tasksArray){
+   localStorage.setItem('Local',tasksArray) 
+}
+~~~
+
+Con la función `getTasksLocally()` obtenemos los datos de LocalStorage y los convertimos en array para imprimirlos.
+~~~ js
+function getTasksLocally(){
+    MyLocalStorage = localStorage.getItem('Local')
+    
+   
+    // If no existing data, create an array
+    // Otherwise, convert the localStorage string to an array
+    tasksArray = MyLocalStorage ? MyLocalStorage.split(',') : [];
+      
+    printTasks()
+     
+}
+~~~
